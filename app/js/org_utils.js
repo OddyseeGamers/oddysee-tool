@@ -146,10 +146,10 @@ function click(d) {
 }
 
 
-function initOrg(svg, struc) {
+function initOrg(struc) {
+    var svg = d3.select("#svg");
     var nodes = partition.nodes(struc);
-    console.debug("svg", svg, struc.name);
-
+    console.debug("loading svg", svg, struc.name);
 //    console.debug("FOUND???", $(gr).length);
 //    if (gr) {
 //        console.debug("REMOVE", gr[0]);

@@ -15,8 +15,7 @@ function appendUnit() {
 
         dialog.dialog( "close" );
 
-        var div = d3.select("#svg");
-        initOrg(div, orgstruc);
+        initOrg(orgstruc);
 
         return true;
     }
@@ -108,7 +107,7 @@ function setDrops(drop) {
     drop.children.forEach(function(c) {
         temp += '<div id="' + c.id + '"class="droppilot">' + c.name + '<table><thead><tr><th>pilot</th><th>M</th></tr></thead><tbody>';
         c.pilots.forEach(function(p) {
-            temp += '<tr><td>' + p + '</td><td></td></tr>';
+            temp += '<tr class="myhover"><td>' + p + '</td><td></td></tr>';
         });
         temp += '</tbody></table></div>';
     });
@@ -190,6 +189,8 @@ function initMemberList(mems) {
 
 
 function initWidgets() {
+
+
     form = $( "#dialog-form" ).find( "form" ).on( "submit", function( event ) {
         event.preventDefault();
         appendUnit();
