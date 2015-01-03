@@ -56,7 +56,7 @@ function getAssignMembers(fleetid) {
 }
 
 var orgstruc = new Unit("ORGNAME", "org");
-function initTree() {
+function initOrgStruc() {
 
     var no1 = new Unit("no1", "division", "");
 
@@ -88,5 +88,3 @@ function initTree() {
     orgstruc.addUnit(no3);
     orgstruc.addUnit(no4);
 }
-
-initTree();
