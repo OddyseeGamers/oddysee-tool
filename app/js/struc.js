@@ -55,7 +55,7 @@ function getAssignmentForMember(handle) {
 function getAssignMembers(fleetid) {
 }
 
-var orgstruc = new Unit("ORGNAME", "org");
+var orgstruc = new Unit("ORGNAME", "org", "org desc...");
 function initOrgStruc() {
 
     var no1 = new Unit("no1", "division", "");

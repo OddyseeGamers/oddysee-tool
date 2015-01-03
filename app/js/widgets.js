@@ -1,37 +1,84 @@
-var dialog = null;
 
-function appendUnit() {
+function addUnit() {
+    $(".modal-title").html("Add Unit");
+
+    $("#i_name").val('');
+    $("#i_desc").val('');
+
+    $("#dropname").val(org_hierarchy[1]);
+    $("#dropdownData").empty();
+    for (var i = 0; i < org_hierarchy.length; i++) {
+        $("#dropdownData").append('<li role="presentation"><a role="menuitem" tabindex="-1" href="#">' + org_hierarchy[i] + '</a></li>');
+    }
+    $(".dropdown-menu").on('click', 'li a', function(){
+        $("#dropname").val($(this).text());
+    });
+
+    $("#saveBtn").unbind();
+    $("#saveBtn").html("Add");
+    $("#saveBtn").on("click", function () {
+        appendUnit(true);
+        $('#myModal').modal('hide');
+    });
+
+    $('#myModal').modal({show: true});
+}
+
+function modifyUnit() {
+    $(".modal-title").html("Edit " + currPath[0].name);
+
+    $("#i_name").val(currPath[0].name);
+    $("#i_desc").val(currPath[0].desc);
+
+    $("#saveBtn").unbind();
+    $("#saveBtn").html("Modify");
+    $("#saveBtn").on("click", function () {
+        appendUnit(false);
+        $('#myModal').modal('hide');
+    });
+
+    $("#dropname").val(org_hierarchy[0]);
+    $("#dropdownData").empty();
+    for (var i = 0; i < org_hierarchy.length; i++) {
+        if (org_hierarchy[i] === currPath[0].type) {
+            $("#dropname").val(currPath[0].type);
+            $("#dropdownData").append('<li role="presentation"><a role="menuitem" tabindex="-1" class="activeItem" href="#">' + org_hierarchy[i] + '</a></li>');
+        } else {
+            $("#dropdownData").append('<li role="presentation"><a role="menuitem" tabindex="-1" href="#">' + org_hierarchy[i] + '</a></li>');
+        }
+    }
+    $(".dropdown-menu").on('click', 'li a', function(){
+        $("#dropname").val($(this).text());
+    });
+
+    $('#myModal').modal({show: true});
+}
+
+function appendUnit(add) {
     var i_name = $( "#i_name" );
     var i_desc = $( "#i_desc" );
-    var i_type = $( "#i_type" );
+    var i_type = $( "#dropname" );
 
 
     if (i_name.val().length > 0 && i_type.val()) {
-//         console.debug("append upit now!", i_name.val(), i_desc.val(), i_type.val(), 'to', currPath[0]);
+        
+        if (add) {
+            var unit = new Unit(i_name.val(), i_type.val(), i_desc.val(), "#555555");
+            currPath[0].addUnit(unit);
+            currPath.unshift(unit);
+        } else {
+            currPath[0].name = i_name.val();
+            currPath[0].desc = i_desc.val();
+            currPath[0].type = i_type.val();
+        }
 
-        var unit = new Unit(i_name.val(), i_type.val(), i_desc.val(), "#555555");
-        console.debug("append upit now!", unit, 'to', currPath[0]);
-        currPath[0].addUnit(unit);
-
-        dialog.dialog( "close" );
-
-        initOrg(orgstruc);
+        initOrg();
+        setInfo(currPath[0]);
 
         return true;
     }
 
     return false;
-}
-
-function add() {
-    console.debug("add");
-    $("#i_type").empty();
-    
-    for (var i = 1; i < org_hierarchy.length; i++) {
-        $("#i_type").append('<option value="' + org_hierarchy[i] + '">' + org_hierarchy[i] + '</option>');
-    }
-
-    dialog.dialog( "open" );
 }
 
 function jumpTo(id) {
@@ -45,18 +92,35 @@ function setInfo(d) {
     $("#nav").empty();
 
     var temp = '';
+//     if (currPath.length > 1) {
+//         for (var i = 0; i < currPath.length; i++) {
+//              if (i > 0) {
+//                 temp = '<li><a href="#" onClick=\'jumpTo("' + currPath[i].id + '")\'>' + currPath[i].name + '</a></li> | ' + temp;
+//              } else {
+//                 temp = '<li><a>' + currPath[i].name + '</a></li>' + temp;
+//              }
+//         }
+
+//         $("#nav").append('<ul>' + temp + '</ul>');
+//     }
+
     if (currPath.length > 1) {
         for (var i = 0; i < currPath.length; i++) {
-             if (i > 0) {
-                temp = '<li><a href="#" onClick=\'jumpTo("' + currPath[i].id + '")\'>' + currPath[i].name + '</a></li> | ' + temp;
-             } else {
+//              if (i > 0) {
+//                 temp = '<li><a href="#" onClick=\'jumpTo("' + currPath[i].id + '")\'>' + currPath[i].name + '</a></li> | ' + temp;
+//              } else {
                 temp = '<li><a>' + currPath[i].name + '</a></li>' + temp;
-             }
+//              }
         }
 
-        $("#nav").append('<ul>' + temp + '</ul>');
+        $("#nav").append('<ol class="breadcrumb">' + temp + '</ol>');
     }
 
+// <ol class="breadcrumb">
+//   <li><a href="#">Home</a></li>
+//   <li><a href="#">Library</a></li>
+//   <li class="active">Data</li>
+// </ol>
 
     $("#name").html(d.name);
     $("#desc").html(d.desc ? d.desc : "");
@@ -189,27 +253,4 @@ function initMemberList(mems) {
 
 
 function initWidgets() {
-
-
-    form = $( "#dialog-form" ).find( "form" ).on( "submit", function( event ) {
-        event.preventDefault();
-        appendUnit();
-    });
-
-    dialog = $( "#dialog-form" ).dialog({
-        autoOpen: false,
-        height: 300,
-        width: 350,
-        modal: true,
-        buttons: {
-            "Add Unit": appendUnit,
-            Cancel: function() {
-                dialog.dialog( "close" );
-            }
-        },
-        close: function() {
-            form[ 0 ].reset();
-//             allFields.removeClass( "ui-state-error" );
-        }
-    });
 }

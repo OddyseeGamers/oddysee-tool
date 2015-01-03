@@ -1,4 +1,3 @@
-
 var width = 600,
     height = width,
     radius = (width - 8) / 2,
@@ -97,13 +96,7 @@ function click(d) {
     }
 
 
-//     console.debug("PATH", currPath);
-//     if (currPath === d.name) {
-        //         return;
-//     } else {
-//     }
     setInfo(d);
-//     console.debug("---------------------------------------- click");
 
     return;
 
@@ -145,15 +138,16 @@ function click(d) {
     });
 }
 
+function initPath() {
+    currPath = [orgstruc];
+    setInfo(orgstruc);
+    initOrg();
+}
 
-function initOrg(struc) {
+function initOrg() {
     var svg = d3.select("#svg");
-    var nodes = partition.nodes(struc);
-    console.debug("loading svg", svg, struc.name);
-//    console.debug("FOUND???", $(gr).length);
-//    if (gr) {
-//        console.debug("REMOVE", gr[0]);
-//    }
+    var nodes = partition.nodes(orgstruc);
+
 
     $("#org_group").remove();
 
@@ -167,45 +161,23 @@ function initOrg(struc) {
             .attr("d", arc)
             .attr("fill-rule", "evenodd")
             .style("fill", color)
-//             .style("x", function(d, i) { console.debug("get width for", d, '-',  i); return (i === 0) ? d.dx : 0; })
             .on("click", click);
-//             .append("image")
-//             .attr("xlink:href", function(d, i) { return (i === 0) ? "default/files/sitelogo_0.png" : ""; })
-//             .attr("width", function(d, i) { console.debug("get width for", d, '-',  i); return (i === 0) ? "50px" : "0px"; })
-//             .attr("height", function(d, i) { console.debug("get width for", d, '-',  i); return (i === 0) ? "50px" : "0px"; })
-//             .attr("x", function(d, i) { console.debug("get width for", d, '-',  i); return (i === 0) ? d.dx : 0; })
-//             .attr("y", function(d, i) { console.debug("get width for", d, '-',  i); return (i === 0) ? d.dy : 0; });
-//     console.debug("path agin", path);
-//      xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
-//     <image xlink:href="firefox.jpg" x="0" y="0" height="50px" width="50px"/>
 
-    currPath = [struc];
-    setInfo(struc);
+
     
     var iw = 90;
     var ih = 90;
     var xoffset = 59.5;
     var yoffset = xoffset;
-//     var xoffset = -4.7;
-//     var yoffset = -4.5;
-//     var pos = $("#path-0").position();
-//     console.debug("path pos", pos);
-//     var p = $("#path-0").clone();
-//     console.debug("clone", p);
-//     path.prepend(p);
+
 
     $("#img1")
         .attr('x', radius + padding - iw / 2 + xoffset)
         .attr('y', radius + padding - ih / 2 + yoffset)
-//         .attr('x', 0 )
-//         .attr('y', 0)
         .attr('width', iw)
         .attr('height', ih);
-//         .attr('fill', "#f00");
 
-//     var p = $("#logo").clone();
-//     console.debug("clone", p);
-//     $("path-0").append(p);
+
 
     text = vis.selectAll("text").data(nodes);
     var textEnter = text.enter().append("text")
@@ -234,40 +206,5 @@ function initOrg(struc) {
         .attr("x", 0)
         .attr("dy", "1em")
         .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
-
-/*
-    path.on('mouseover',function(d,i){
-//         console.debug("path in", d, '-', i);
-        DragDropManager.droppable = d; 
-    });
-
-// Clear the target from the DragDropManager on mouseOut.
-    path.on('mouseout',function(e){
-//         console.debug("path out", e);
-        DragDropManager.droppable = null;
-    });
-
-    form = $( "#dialog-form" ).find( "form" ).on( "submit", function( event ) {
-        event.preventDefault();
-        appendUnit();
-    });
-
-    dialog = $( "#dialog-form" ).dialog({
-        autoOpen: false,
-        height: 300,
-        width: 350,
-        modal: true,
-        buttons: {
-            "Add Unit": appendUnit,
-            Cancel: function() {
-                dialog.dialog( "close" );
-            }
-        },
-        close: function() {
-            form[ 0 ].reset();
-//             allFields.removeClass( "ui-state-error" );
-        }
-    });
-    */
 }
 

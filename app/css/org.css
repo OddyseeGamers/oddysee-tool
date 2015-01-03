@@ -1,3 +1,5 @@
+///////////////////////////////////////////////////////////////////////////////////
+// graph styles
 .item {
     fill: "#00ff00";
 }
@@ -38,6 +40,102 @@ path:hover {
 /*   cursor: pointer; */
 }
 
+text {
+  font: 10px sans-serif;
+/*   cursor: pointer; */
+  pointer-events: none;
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+// bootstrap overwrites
+
+/* .row {} */
+
+.textfix {
+    margin-right: 0px;
+    margin-left: 50px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.modal-content { }
+
+.modal-content {
+    background-color: #2C3539 !important;
+}
+
+.modal-footer {
+    border-top: 1px solid #555;
+}
+.modal-header {
+    border-bottom: 1px solid #555;
+}
+
+.close {
+    color: #fff;
+    opacity: .5;
+}
+
+.close:hover, .close:focus {
+    color: #fff;
+    opacity: 1;
+}
+
+
+.dropdown-menu {}
+
+.dropdown-menu {
+    color: #fff;
+    background-color: #111 !important;
+}
+
+.dropdown-menu>li>a {
+    color: #fff;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    color: #000;
+    background-color: #219ab3;
+}
+
+/* .activeItem>li>a:hover, .activeItem>li>a:focus { */
+/*     color: #fff; */
+/*     background-color: #219ab3; */
+/* } */
+
+a.activeItem {
+    font-weight: 600;
+    background-color: #286090;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    border: 1px solid #219ab3;
+    color: #fff;
+/*     color: #219ab3; */
+}
+
+.form-control {
+    background-color: transparent;
+    border: 1px solid #219ab3;
+    color: #fff;
+/*     color: #219ab3; */
+}
+
+input[readonly].form-control {
+    cursor: default;
+    background-color: transparent;
+    border: 1px solid #219ab3;
+    color: #fff;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////
+// 
+
+
+
 .memberlist {
     overflow: auto;
 /*     max-height: 300px; */
@@ -49,32 +147,11 @@ path:hover {
 }
 
 
-.member {
-/*     display: inline; */
-/*     width: 200px; */
-/*     height: 20px; */
-/*      text-align: center; */
-/*      vertical-align: middle; */
-/*     width: 300px; */
-/*     margin: 0 0 .3rem 0; */
-/*     padding: .3rem; */
-/*     right-padding: 10px;; */
-/*     list-style: none; */
-/*     background-color: #fff; */
-/*     background-color: rgba(255,255,255,.8); */
-/*     font: .8rem/1 arial, helvetica, sans-serif; */
-/*     border: 1px #7f0000 solid; */
-}
+
 
 tr.myhover:hover {
     background-color: #333;
 }
-
-/* .hovered { */
-/*     cursor: copy !important; */
-/*     background: #ccc; */
-/*     border: 1px #ff0000 solid; */
-/* } */
 
 td.ui-draggable {
     cursor: move;
@@ -86,24 +163,20 @@ td.ui-state-disabled {
 }
 
 
-div.ui-draggable {
-    cursor: move;
-}
-div.ui-state-disabled {
-    cursor: not-allowed;
-    opacity: .5;
-}
+/* div.ui-draggable { */
+/*     cursor: move; */
+/* } */
+/* div.ui-state-disabled { */
+/*     cursor: not-allowed; */
+/*     opacity: .5; */
+/* } */
 
-.memberlisttab tr:hover {
-    background: #f00;
-    cursor: pointer;
-}
+/* .memberlisttab tr:hover { */
+/*     background: #f00; */
+/*     cursor: pointer; */
+/* } */
 
-text {
-  font: 10px sans-serif;
-/*   cursor: pointer; */
-  pointer-events: none;
-}
+
 
 
 
@@ -203,13 +276,15 @@ li.ui-state-disabled {
 
 
 
-label, input, select { display:block; }
-input.text { margin-bottom:12px; width:95%; padding: .4em; }
-select.dia { margin-bottom:12px; width:98%; padding: .4em; }
-fieldset { padding:0; border:0; margin-top:25px; }
-h1 { font-size: 1.2em; margin: .6em 0; }
-div#users-contain { width: 350px; margin: 20px 0; }
-div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-.ui-dialog .ui-state-error { padding: .3em; }
-.validateTips { border: 1px solid transparent; padding: 0.3em; }
+/* label, input, select { display:block; } */
+/* input.text { margin-bottom:12px; width:95%; padding: .4em; } */
+/* select.dia { margin-bottom:12px; width:98%; padding: .4em; } */
+/* fieldset { padding:0; border:0; margin-top:25px; } */
+/* h1 { font-size: 1.2em; margin: .6em 0; } */
+/* div#users-contain { width: 350px; margin: 20px 0; } */
+/* div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; } */
+/* div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; } */
+/* .ui-dialog .ui-state-error { padding: .3em; } */
+/* .validateTips { border: 1px solid transparent; padding: 0.3em; } */
+
+
