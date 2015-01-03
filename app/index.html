@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="startbootstrap-grayscale/css/grayscale.css">
 
 
-
         <script src='js/members.js'></script>
         <script src="js/struc.js""></script>
         <script src='js/org_utils.js'></script>
@@ -24,6 +23,119 @@
     </head>
 
     <body>
+        <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation"><a href="#org_mgmt" aria-controls="org_mgmt" role="tab" data-toggle="tab">Org Structure</a></li>
+            <li role="presentation"><a href="#mem_mgmt" aria-controls="mem_mgmt" role="tab" data-toggle="tab">Member Management</a></li>
+            <li role="presentation"><a href="#miss_mgmt" aria-controls="miss_mgmt" role="tab" data-toggle="tab">Mission Management</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" id="org_mgmt">
+               <div id="dialog-form" title="Add Unit">
+                    <form class="dia">
+                        <fieldset>
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="i_name" value="" class="text ui-widget-content ui-corner-all">
+                            <label for="desc">Description</label>
+                            <input type="text" name="desc" id="i_desc" value="" class="text ui-widget-content ui-corner-all">
+                            <label for="type">Type</label>
+                            <select name="type" id="i_type" class="ui-widget-content ui-corner-all"></select>
+                            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                        </fieldset>
+                    </form>
+                </div>
+
+
+                <div class="content">
+                    <div id="nav">
+                    </div>
+                    <div class="info">
+                        <div>
+                            <div class="infoitem">name:</div>
+                            <div class="infoentry" id="name"></div>
+                            </br>
+
+                            <div class="infoitem">description:</div>
+                            <div class="infoentry" id="desc"></div>
+                            </br>
+
+                            <div class="infoitem">type:</div>
+                            <div class="infoentry" id="type"></div>
+                            </br>
+
+                            <div class="infoitem">leader:</div>
+                            <div class="infoentry" id="rank"></div>
+                            </br>
+                            <div class="infoitem"></div>
+                            <div class="infoentry" id="leader"></div>
+
+                            </br>
+                            </br>
+
+                            <div id="edit">
+                                 <button onclick="add()">add</button>
+                                 <button onclick="change()">change</button>
+                                 <button onclick="deleteAll()">delete</button>
+                            </div>
+
+                            </br>
+                            </br>
+
+
+                            <div class="infoitem">Pilots:</div>
+                            <div class="infoentry" id="pilotcount"></div>
+
+                        </div>
+                    </div>
+
+                    <div id="vis" class="graph">
+                        <svg id="svg" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                        <defs>
+                        <pattern id="img1" patternUnits="userSpaceOnUse">
+                        <image xlink:href="assets/sitelogo_1.png" width="90px" height="90px" x="0" y="0"></image>
+                        </pattern>
+                        </defs>
+                        </svg>
+                    </div>
+
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mem_mgmt">
+                <div id="assign" class="assign" style="height:33%;">
+                    <div id="divisionSel">
+                    </div>
+                    <div id="unitSel">
+                    </div>
+
+                    <div id="dropList">
+                    </div>
+                </div>
+                <div class="memberlist" style="height:66%;">
+
+                    <table style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th align="left">#</th>
+                                <th align="left">Name</th>
+                                <th align="left">Callsign</th>
+                                <th align="left">Rank</th>
+                                <th align="left">Role</th>
+                                <th align="left">Ships</th>
+                                <th align="left">Timzone</th>
+                                <th align="left">Note</th>
+                            </tr>
+                        </thead>
+                        <tbody id="memberlistbody">
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="miss_mgmt">
+            </div>
+        </div>
+<!--
         <div id="tabs">
             <ul>
                 <li><a href="#tabs-1">Org Structure</a></li>
@@ -135,6 +247,6 @@
             </div>
 
         </div>
-
+        -->
     </body>
 </html>
