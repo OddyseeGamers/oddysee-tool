@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                 options: {
                     open: true,
                     base: [
-                        '.tmp',
+                        'bower_components',
                         '<%= config.app %>'
                     ]
                 }
