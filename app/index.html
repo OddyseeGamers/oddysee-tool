@@ -9,10 +9,10 @@
         <script src="startbootstrap-grayscale/js/grayscale.js"></script>
         <script src="d3/d3.min.js"></script>
 
-<!--         <link rel="stylesheet" href="jquery-ui/themes/base/jquery-ui.css"> -->
+        <!--         <link rel="stylesheet" href="jquery-ui/themes/base/jquery-ui.css"> -->
         <link rel="stylesheet" href="startbootstrap-grayscale/css/bootstrap.min.css">
         <link rel="stylesheet" href="startbootstrap-grayscale/css/grayscale.css">
-<!--         <link rel="stylesheet" href="https://raw.githubusercontent.com/OddyseeGamers/oddyseegamers.github.io/master/css/oddysee.css"> -->
+        <!--         <link rel="stylesheet" href="https://raw.githubusercontent.com/OddyseeGamers/oddyseegamers.github.io/master/css/oddysee.css"> -->
 
 
         <script src='js/members.js'></script>
@@ -25,85 +25,85 @@
     </head>
 
     <body>
+        <div class="right-tabs">
+            <ul class="nav nav-tabs" role="tablist" id="myTab">
+                <li role="presentation"><a href="#org_mgmt" aria-controls="org_mgmt" role="tab" data-toggle="tab">Overview</a></li>
+                <li role="presentation"><a href="#mem_mgmt" aria-controls="mem_mgmt" role="tab" data-toggle="tab">Member Assignment</a></li>
+                <li role="presentation"><a href="#train_mgmt" aria-controls="train_mgmt" role="tab" data-toggle="tab">Training</a></li>
+                <li role="presentation"><a href="#miss_mgmt" aria-controls="miss_mgmt" role="tab" data-toggle="tab">Missions</a></li>
+            </ul>
 
-        <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation"><a href="#org_mgmt" aria-controls="org_mgmt" role="tab" data-toggle="tab">Overview</a></li>
-            <li role="presentation"><a href="#mem_mgmt" aria-controls="mem_mgmt" role="tab" data-toggle="tab">Member Assignment</a></li>
-            <li role="presentation"><a href="#train_mgmt" aria-controls="train_mgmt" role="tab" data-toggle="tab">Training</a></li>
-            <li role="presentation"><a href="#miss_mgmt" aria-controls="miss_mgmt" role="tab" data-toggle="tab">Missions</a></li>
-        </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane" id="org_mgmt">
 
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane" id="org_mgmt">
-
-                <div class="modal fade" id="myModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content modal-od">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Name
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input type="text" name="name" id="i_name" value="" class="form-control">
-                                    </div>
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content modal-od">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title"></h4>
                                 </div>
-                                </br>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Description
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input type="text" name="desc" id="i_desc" value="" class="form-control">
-                                    </div>
-                                </div>
-                                </br>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Type
-                                    </div>
-                                    <div class="col-md-9">
-
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="dropname" readonly>
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="caret"></span></button>
-                                                <ul class="dropdown-menu dropdown-menu-right" role="menu" id="dropdownData">
-                                                </ul>
-                                            </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            Name
                                         </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="name" id="i_name" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                    </br>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            Description
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="desc" id="i_desc" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                    </br>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            Type
+                                        </div>
+                                        <div class="col-md-9">
 
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="dropname" readonly>
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu dropdown-menu-right" role="menu" id="dropdownData">
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="content">
-                    <div id="nav">
-                    </div>
-                    <div class="info">
-                        <div class="panel panel-default infoPanel">
-                            <div class="panel-body">
-                                <strong>
+                    <div class="content">
+                        <div id="nav">
+                        </div>
+                        <div class="info">
+                            <div class="panel panel-default infoPanel">
+                                <div class="panel-body">
+                                    <strong>
                                         <div class="unitName" id="name"></div>
-                                </strong>
-                            </div>
-                            <ul class="list-group">
-                                <li class="list-group-item">
+                                    </strong>
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
                                     <strong>Description:</strong>
                                     <div class="" id="desc"></div>
-                                </li>
-                                <li class="list-group-item">
+                                    </li>
+                                    <li class="list-group-item">
                                     <strong>Leader:</strong>
                                     <div class="infolist">
                                         <table class="table">
@@ -111,8 +111,8 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </li>
-                                <li class="list-group-item">
+                                    </li>
+                                    <li class="list-group-item">
                                     <strong>Pilots:</strong>
                                     <span class="pilotinfo">
                                     </span>
@@ -123,79 +123,79 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </li>
-                                <li class="list-group-item">
-                                <div id="edit" class="text-center">
-                                    <div class="btn-group text-center" role="group">
-                                        <button onclick="addUnit()" type="button" class="btn btn-default">Add</button>
-                                        <button onclick="modifyUnit()" type="button" class="btn btn-default">Modify</button>
-                                        <button id="assBtn" onclick="assignPilots()" type="button" class="btn btn-default">Assign</button>
-                                        <button type="button" class="btn btn-default">Delete</button>
+                                    </li>
+                                    <li class="list-group-item">
+                                    <div id="edit" class="text-center">
+                                        <div class="btn-group text-center" role="group">
+                                            <button onclick="addUnit()" type="button" class="btn btn-default">Add</button>
+                                            <button onclick="modifyUnit()" type="button" class="btn btn-default">Modify</button>
+                                            <button id="assBtn" onclick="assignPilots()" type="button" class="btn btn-default">Assign</button>
+                                            <button type="button" class="btn btn-default">Delete</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </ul>
-                        </div>
-     
-                    </div>
+                                </ul>
+                            </div>
 
-                    <div id="vis" class="graph">
-                        <svg id="svg" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
-                        <defs>
-                        <pattern id="img1" patternUnits="userSpaceOnUse">
-                        <image xlink:href="assets/sitelogo_1.png" width="90px" height="90px" x="0" y="0"></image>
-                        </pattern>
-                        </defs>
-                        </svg>
+                        </div>
+
+                        <div id="vis" class="graph">
+                            <svg id="svg" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                            <defs>
+                            <pattern id="img1" patternUnits="userSpaceOnUse">
+                            <image xlink:href="assets/sitelogo_1.png" width="90px" height="90px" x="0" y="0"></image>
+                            </pattern>
+                            </defs>
+                            </svg>
+                        </div>
+
                     </div>
 
                 </div>
-
-            </div>
-            <div role="tabpanel" class="tab-pane" id="mem_mgmt">
-                <div id="assign" class="assign">
-                    </br>
-                    <div class="row">
-                        <div id="divisionSel">
+                <div role="tabpanel" class="tab-pane" id="mem_mgmt">
+                    <div id="assign" class="assign">
+                        </br>
+                        <div class="row">
+                            <div id="divisionSel">
+                            </div>
+                            <div id="unitSel">
+                            </div>
                         </div>
-                        <div id="unitSel">
-                        </div>
-                    </div>
-                    </br>
+                        </br>
 
-                    <div class="row">
-                        <div id="dropList">
+                        <div class="row">
+                            <div id="dropList">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-12">
-                        <div class="memberlist">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th align="left">#</th>
-                                        <th align="left">Name</th>
-                                        <th align="left">Callsign</th>
-                                        <th align="left">Rank</th>
-                                        <th align="left">Role</th>
-                                        <th align="left">Ships</th>
-                                        <th align="left">Timzone</th>
-                                        <th align="left">Note</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="memberlistbody">
-                                </tbody>
-                            </table>
+                        <div class="col-md-12">
+                            <div class="memberlist">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th align="left">#</th>
+                                            <th align="left">Name</th>
+                                            <th align="left">Callsign</th>
+                                            <th align="left">Rank</th>
+                                            <th align="left">Role</th>
+                                            <th align="left">Ships</th>
+                                            <th align="left">Timzone</th>
+                                            <th align="left">Note</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="memberlistbody">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="train_mgmt">
-                TODO
-            </div>
-            <div role="tabpanel" class="tab-pane" id="miss_mgmt">
-                TODO
+                <div role="tabpanel" class="tab-pane" id="train_mgmt">
+                    TODO
+                </div>
+                <div role="tabpanel" class="tab-pane" id="miss_mgmt">
+                    TODO
+                </div>
             </div>
         </div>
-
     </body>
 </html>

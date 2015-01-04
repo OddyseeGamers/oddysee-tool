@@ -247,7 +247,7 @@ function handleDropEvent( event, ui ) {
 function createDraggable() {
     return {
     //         containment: '.droppilot',
-    //         containment: 'body',
+//             containment: 'body',
     //         stack: '.assign',
     //         stack: '.member div',
             cursor: 'move',
