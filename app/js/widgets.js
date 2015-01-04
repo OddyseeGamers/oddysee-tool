@@ -1,3 +1,5 @@
+/****************************************************************************/
+/* dialogs */
 
 function addUnit() {
     $(".modal-title").html('Add Unit to "' + currPath[0].name + '"');
@@ -81,33 +83,21 @@ function appendUnit(add) {
     return false;
 }
 
-function jumpTo(id) {
-    if (id) {
-        click(cache[id]);
-    }
-    return false;
-}
+/****************************************************************************/
+/* widgets */
 
 function setInfo(d) {
-    $("#nav").empty();
+    $("#breadPath").empty();
 
-    var temp = '';
-    if (currPath.length > 1) {
-        for (var i = 0; i < currPath.length; i++) {
-             if (i > 0) {
-                temp = '<li><a onClick=\'jumpTo("' + currPath[i].id + '")\'>' + currPath[i].name + '</a></li>' + temp;
-             } else {
-                temp = '<li><a>' + currPath[i].name + '</a></li>' + temp;
-             }
-        }
-
-        $("#nav").append('<ol class="breadcrumb">' + temp + '</ol>');
+    for (var i = currPath.length - 1; i >= 0; i--) {
+        initSel('#breadPath', currPath[i]);
     }
-
     
     $("#name").html((d.type ? d.name  + " [" + d.type + "]" : d.name) + " [" + d.id + "]");
     $("#desc").html(d.desc ? d.desc : "&nbsp;");
     $("#rank").empty();
+
+    var temp = '';
 
     $("#leader").empty();
     if (d.leader && d.leader.length) {
@@ -144,44 +134,47 @@ function setInfo(d) {
     } else {
         $("#assBtn").attr('class', 'btn btn-default hidden');
     }
+
+    initDropList();
 }
 
 
-function initAssign() {
-    initSel("#divisionSel", orgstruc);
-    initSel("#unitSel", orgstruc.children[0]);
-    if(orgstruc.children[0].children) {
-        setDrops(orgstruc.children[0].children[0]);
+function initDropList() {
+    if (currPath[0].children) {
+        setDrops(currPath[0]);
+    } else {
+        if (currPath.length > 1 && currPath[1]) {
+            setDrops(currPath[1]);
+        } else {
+            $("#dropList").empty();
+        }
     }
 }
 
 function initSel(tag, obj) {
-    $(tag).empty();
-
     var temp = "";
-    var active = "";
     if (obj.children) {
         obj.children.forEach(function(c) {
-            if (active === "") {
-                active = c.name;
-            }
-            temp += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">' + c.name + '</a></li>';
+            temp += '<li role="presentation"><a onClick="jumpTo(' + c.id + ')" role="menuitem" tabindex="-1" href="#" id="' + c.id + '">' + c.name + '</a></li>';
         });
     }
-    
-    $(tag).append('<div class="col-md-3"><div class="input-group">' +
-                '<input type="text" class="form-control" id="dropname' + obj.id + '" value="' + active + '" readonly>' +
-                '<div class="input-group-btn">' + 
-                    '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="caret"></span></button>' +
-                    '<ul class="dropdown-menu dropdown-menu-right" role="menu" id="dropdownData' + obj.id + '">' +
-                    temp +
-                    '</ul>' +
-                '</div>' + 
-            '</div></div>');
 
-    $("#dropdownData" + obj.id).on('click', 'li a', function(){
-        $("#dropname" + obj.id).val($(this).text());
-    });
+
+
+    if (temp !== "") {
+        $(tag).append('<li role="presentation" class="dropdown">' +
+                      '<a id="drop' + obj.id + '" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">' +
+                        obj.name + '&nbsp;&nbsp;&nbsp;<span class="caret"></span>' +
+                    '</a>' +
+                    '<ul class="dropdown-menu" role="menu"  aria-labelledby="drop' + obj.id + '">' +
+                      temp +
+                      '</ul></li>');
+    } else {
+        $(tag).append('<li role="presentation">' +
+                        '<a class="last">' +
+                        obj.name +
+                    '</a></li>');
+    }
 }
 
 function setDrops(drop) {

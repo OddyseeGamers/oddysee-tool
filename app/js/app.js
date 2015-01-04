@@ -1,6 +1,6 @@
 $(document).ready(function () {
-//     $('#myTab a:first').tab('show');
-    $('#myTab a[href="#mem_mgmt"]').tab('show');
+    $('#myTab a:first').tab('show');
+//     $('#myTab a[href="#mem_mgmt"]').tab('show');
     $('#myModal').modal({show: false, backdrop: "static"});
 
 //     $('#myDropdown').on('hide.bs.dropdown', function () {
@@ -12,6 +12,6 @@ $(document).ready(function () {
     initPath();
     initWidgets();
 
-    initAssign();
+//     initAssign();
     initMemberList(mems);
 });

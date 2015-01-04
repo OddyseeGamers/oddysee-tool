@@ -106,40 +106,119 @@ function getAssignMembers(id) {
     return res;
 }
 
-var orgstruc = new Unit("ORGNAME", "org", "org desc...");
+var orgstruc = new Unit("ODDYSEE", "org");
 function initOrgStruc() {
+    var lid = new Unit("LID", "division", "Logistics And Intelligence Division");
+    var oper = new Unit("Operations", "branch", "", "#bb0000");
+    var trade = new Unit("Trade Logistics", "branch");
+    var pf = new Unit("Pathfinder", "branch");
+    var tech = new Unit("Tech Salvage", "branch");
 
-    var no1 = new Unit("no1", "division", "");
+    var tr = new Unit("Trading", "unit", "", "#cc0000");
+    var mi = new Unit("Mining", "unit", "", "#cc0000");
+    var lo = new Unit("Logistics", "unit", "", "#cc0000");
+    var bo = new Unit("Base Operations", "unit", "", "#cc0000");
+    trade.addUnit(tr);
+    trade.addUnit(mi);
+    trade.addUnit(lo);
+    trade.addUnit(bo);
 
-    var sub1 = new Unit("sub 1", "fleet", "");
-    var sub2 = new Unit("sub 2", "fleet", "", "#ff0000");
-    var sub3 = new Unit("sub 3", "fleet", "", "#ff0000");
 
-    var s1 = new Unit("squad 1", "squadron", "", "#ff3333");
-    var s2 = new Unit("squad 2", "squadron", "", "#ff3333");
-    var s3 = new Unit("squad 3", "squadron", "", "#ff3333");
+    var ca = new Unit("Cartography", "unit", "", "#990000");
+    var na = new Unit("Navigation", "unit", "", "#990000");
+    var ph = new Unit("Pathfinder", "unit", "", "#990000");
+    var op = new Unit("Operations", "unit", "", "#990000");
+    pf.addUnit(ca);
+    pf.addUnit(na);
+    pf.addUnit(ph);
+    pf.addUnit(op);
 
-    sub1.addUnit(s1);
-    sub1.addUnit(s2);
-    sub1.addUnit(s3);
 
-    no1.addUnit(sub1);
-    no1.addUnit(sub2);
-    no1.addUnit(sub3);
+    var sa = new Unit("Salvage", "unit", "", "#660000");
+    var bb = new Unit("Boarding", "unit", "", "#660000");
+    var te = new Unit("Technology", "unit", "", "#660000");
+    var or = new Unit("Ordinance", "unit", "", "#660000");
+    var oe = new Unit("Operations", "unit", "", "#660000");
+    tech.addUnit(sa);
+    tech.addUnit(bb);
+    tech.addUnit(te);
+    tech.addUnit(or);
+    tech.addUnit(oe);
 
-    var no2 = new Unit("no2", "division", "", "#00ff00");
-    var no3 = new Unit("no3", "division", "", "#0000ff");
-    var no4 = new Unit("no4", "division", "", "#ffff00");
 
-    orgstruc.addUnit(no1);
-    orgstruc.addUnit(no2);
-    orgstruc.addUnit(no3);
-    orgstruc.addUnit(no4);
+    lid.addUnit(oper);
+    lid.addUnit(trade);
+    lid.addUnit(pf);
+    lid.addUnit(tech);
 
+
+    var rec = new Unit("REC", "division", "", "#ffd700");
+
+
+    var prcom = new Unit("PRCOM", "division");
+    var p1 = new Unit("Contracts", "branch", "", "#00ffff");
+    var p2 = new Unit("Racing", "branch", "", "#00ffff");
+    var p3 = new Unit("Public Relations", "branch", "", "#00ffff");
+    prcom.addUnit(p1);
+    prcom.addUnit(p2);
+    prcom.addUnit(p3);
+
+    var stratcom = new Unit("STRATCOM", "division", "Strategy Command");
+
+    var fleet1 = new Unit("1st Fleet", "fleet");
+
+    var sqd1 = new Unit("Light Fighters", "squadron", "", "#0000ff");
+    var sqd2 = new Unit("Heavy Fighters", "squadron", "", "#0000ff");
+    var sqd3 = new Unit("Assault/Bombers", "squadron", "", "#0000ff");
+    var sqd4 = new Unit("Recon", "squadron", "", "#0000ff");
+    var sqd5 = new Unit("Gunships/ Transports", "squadron", "", "#0000ff");
+    var sqd6 = new Unit("Capital Ships Command", "squadron", "", "#0000ff");
+
+    fleet1.addUnit(sqd1);
+    fleet1.addUnit(sqd2);
+    fleet1.addUnit(sqd3);
+    fleet1.addUnit(sqd4);
+    fleet1.addUnit(sqd5);
+    fleet1.addUnit(sqd6);
+
+    stratcom.addUnit(fleet1);
+
+
+    var fleet2 = new Unit("2nd Fleet", "fleet");
+
+    sqd1 = new Unit("Light Fighters", "squadron", "", "#0000cc");
+    sqd2 = new Unit("Heavy Fighters", "squadron", "", "#0000cc");
+    sqd3 = new Unit("Assault/ Bombers", "squadron", "", "#0000cc");
+    sqd4 = new Unit("Recon", "squadron", "", "#0000cc");
+    sqd5 = new Unit("Gunships/ Transports", "squadron", "", "#0000cc");
+    sqd6 = new Unit("Capital Ships Command", "squadron", "", "#0000cc");
+
+    fleet2.addUnit(sqd1);
+    fleet2.addUnit(sqd2);
+    fleet2.addUnit(sqd3);
+    fleet2.addUnit(sqd4);
+    fleet2.addUnit(sqd5);
+    fleet2.addUnit(sqd6);
+
+    stratcom.addUnit(fleet2);
+
+    var marine = new Unit("Marine Command", "fleet");
+    var mc1 = new Unit("Marine Squads", "squadron", "", "#000099");
+
+    marine.addUnit(mc1);
+
+    stratcom.addUnit(marine);
 
     orgstruc.leader.push("mem001");
     orgstruc.leader.push("mem003");
 
+
+    orgstruc.addUnit(stratcom);
+    orgstruc.addUnit(lid);
+    orgstruc.addUnit(rec);
+    orgstruc.addUnit(prcom);
+
+    assignMap.push({handle: "mem001", fleet: 26});
     assignMap.push({handle: "mem001", unit: 5});
     assignMap.push({handle: "mem002", unit: 5});
     assignMap.push({handle: "mem004", unit: 7});

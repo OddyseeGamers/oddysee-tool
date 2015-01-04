@@ -1,4 +1,4 @@
-var width = 670,
+var width = 630,
     height = width,
     radius = (width - 8) / 2,
     x = d3.scale.linear().range([0, 2 * Math.PI]),
@@ -85,6 +85,12 @@ function brightness(rgb) {
   return rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114;
 }
 
+function jumpTo(id) {
+    if (id) {
+        click(cache[id]);
+    }
+    return false;
+}
 
 function click(d) {
     currPath = [ d ];
@@ -98,19 +104,14 @@ function click(d) {
 
     setInfo(d);
 
-    return;
-
-//     console.debug("click", d, this);
-//     window.location.href.substr(0, window.location.href.indexOf('#'));
+/***** ANIMATION *******/
+/*  
     path.transition()
     .duration(duration)
     .attrTween("d", arcTween(d));
 
-//     console.debug("clicked", d);
-
     // Somewhat of a hack as we rely on arcTween updating the scales.
     text.style("visibility", function(e) {
-//         console.debug("check parent:", e, isParentOf(d, e));
         return isParentOf(d, e) ? null : d3.select(this).style("visibility");
     })
     .transition()
@@ -136,6 +137,7 @@ function click(d) {
 
         d3.select(this).style("visibility", isParentOf(d, e) ? null : "hidden");
     });
+*/
 }
 
 function initPath() {
@@ -167,7 +169,7 @@ function initOrg() {
     
     var iw = 90;
     var ih = 90;
-    var xoffset = 23.5;
+    var xoffset = 43.5;
     var yoffset = xoffset;
 
 

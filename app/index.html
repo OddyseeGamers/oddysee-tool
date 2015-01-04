@@ -25,12 +25,15 @@
     </head>
 
     <body>
-        <div class="right-tabs">
             <ul class="nav nav-tabs" role="tablist" id="myTab">
                 <li role="presentation"><a href="#org_mgmt" aria-controls="org_mgmt" role="tab" data-toggle="tab">Overview</a></li>
                 <li role="presentation"><a href="#mem_mgmt" aria-controls="mem_mgmt" role="tab" data-toggle="tab">Member Assignment</a></li>
                 <li role="presentation"><a href="#train_mgmt" aria-controls="train_mgmt" role="tab" data-toggle="tab">Training</a></li>
                 <li role="presentation"><a href="#miss_mgmt" aria-controls="miss_mgmt" role="tab" data-toggle="tab">Missions</a></li>
+            </ul>
+
+
+            <ul class="nav nav-pills" id="breadPath" role="tablist">
             </ul>
 
             <div class="tab-content">
@@ -88,9 +91,8 @@
                         </div>
                     </div>
 
+
                     <div class="content">
-                        <div id="nav">
-                        </div>
                         <div class="info">
                             <div class="panel panel-default infoPanel">
                                 <div class="panel-body">
@@ -153,15 +155,6 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="mem_mgmt">
                     <div id="assign" class="assign">
-                        </br>
-                        <div class="row">
-                            <div id="divisionSel">
-                            </div>
-                            <div id="unitSel">
-                            </div>
-                        </div>
-                        </br>
-
                         <div class="row">
                             <div id="dropList">
                             </div>
@@ -196,6 +189,5 @@
                     TODO
                 </div>
             </div>
-        </div>
     </body>
 </html>
