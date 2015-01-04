@@ -1,5 +1,5 @@
-///////////////////////////////////////////////////////////////////////////////////
-// graph styles
+/* /////////////////////////////////////////////////////////////////////////////////// */
+/* // graph styles */
 .item {
     fill: "#00ff00";
 }
@@ -46,8 +46,7 @@ text {
   pointer-events: none;
 }
 
-///////////////////////////////////////////////////////////////////////////////////
-// bootstrap overwrites
+/* // bootstrap overwrites */
 
 /* .row {} */
 
@@ -111,7 +110,7 @@ a.activeItem {
 
 .breadcrumb {
     background-color: transparent;
-    border: 1px solid #219ab3;
+/*     border: 1px solid #219ab3; */
     color: #fff;
 /*     color: #219ab3; */
 }
@@ -130,11 +129,51 @@ input[readonly].form-control {
     color: #fff;
 }
 
+.panel {
+    background-color: #2C3539;
+    border: 0px;
+}
 
-///////////////////////////////////////////////////////////////////////////////////
-// 
+.list-group-item {
+    background-color: #2C3539;
+    border: 1px solid #000;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////// */
+/* //  */
+
+.leader {
+    color: #31708f;
+}
+.list-group-item-less {
+/*     background-color: #2C3539; */
+    border: 0px solid #000 !important;
+}
 
 
+/************************************************************************************* */
+/* panels  */
+
+.infoPanel {
+    width: 250px;
+    height: 670px;
+    margin-bottom: 0px;
+/*     float: left; */
+}
+
+.graph {
+    width: 670px;
+    height: 670px;
+    float: left;
+}
+
+.info {
+/*     width: 250px; */
+/*     height: 100%; */
+    float: left;
+}
+
+/************************************************************************************* */
 
 .memberlist {
     overflow: auto;
@@ -163,22 +202,6 @@ td.ui-state-disabled {
 }
 
 
-/* div.ui-draggable { */
-/*     cursor: move; */
-/* } */
-/* div.ui-state-disabled { */
-/*     cursor: not-allowed; */
-/*     opacity: .5; */
-/* } */
-
-/* .memberlisttab tr:hover { */
-/*     background: #f00; */
-/*     cursor: pointer; */
-/* } */
-
-
-
-
 
 .content {
     width: 100%;
@@ -190,51 +213,19 @@ td.ui-state-disabled {
     fill: #000;
 /*     opacity: 0; */
 }
+
 #nav {
     position: absolute;
     height: 50px;
     left: 250px;
 }
 
-#nav ul
-{
-    margin-top: 0px;
-    margin-right: 10px;
-    list-style-type: none;
-/*     text-align: center; */
+
+#nav ol li a:hover {
+    cursor: pointer;
 }
 
-#nav ul li { display: inline; }
 
-#nav ul li a
-{
-    text-decoration: none;
-/*     padding: 2px; */
-/*     margin: 2px; */
-/*     padding: .2em 1em; */
-    color: #fff;
-    background-color: #036;
-}
-
-#nav ul li a:hover
-{
-    color: #fff;
-    background-color: #369;
-}
-
-/* ul li { */
-/*   display: inline; */
-/* } */
-/*     width: 100px; */
-/*     background: "#f00"; */
-/*     padding: 2px; */
-/* } */
-
-.info {
-    width: 250px;
-    height: 100%;
-    float: left;
-}
 
 .infoitem {
     display: inline-block;
@@ -248,11 +239,6 @@ td.ui-state-disabled {
     display: inline;
 }
 
-.graph {
-    width: 700px;
-    height: 700px;
-    float: left;
-}
 
 
 
@@ -272,19 +258,3 @@ li.ui-state-disabled {
     cursor: not-allowed;
     opacity: .5;
 }
-
-
-
-
-/* label, input, select { display:block; } */
-/* input.text { margin-bottom:12px; width:95%; padding: .4em; } */
-/* select.dia { margin-bottom:12px; width:98%; padding: .4em; } */
-/* fieldset { padding:0; border:0; margin-top:25px; } */
-/* h1 { font-size: 1.2em; margin: .6em 0; } */
-/* div#users-contain { width: 350px; margin: 20px 0; } */
-/* div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; } */
-/* div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; } */
-/* .ui-dialog .ui-state-error { padding: .3em; } */
-/* .validateTips { border: 1px solid transparent; padding: 0.3em; } */
-
-

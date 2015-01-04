@@ -1,4 +1,4 @@
-var width = 600,
+var width = 670,
     height = width,
     radius = (width - 8) / 2,
     x = d3.scale.linear().range([0, 2 * Math.PI]),
@@ -167,7 +167,7 @@ function initOrg() {
     
     var iw = 90;
     var ih = 90;
-    var xoffset = 59.5;
+    var xoffset = 23.5;
     var yoffset = xoffset;
 
 
