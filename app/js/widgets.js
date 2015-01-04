@@ -25,7 +25,7 @@ function addUnit() {
 }
 
 function modifyUnit() {
-    $(".modal-title").html("Edit " + currPath[0].name);
+    $(".modal-title").html('Edit "' + currPath[0].name + '"');
 
     $("#i_name").val(currPath[0].name);
     $("#i_desc").val(currPath[0].desc);
@@ -92,25 +92,13 @@ function setInfo(d) {
     $("#nav").empty();
 
     var temp = '';
-//     if (currPath.length > 1) {
-//         for (var i = 0; i < currPath.length; i++) {
-//              if (i > 0) {
-//                 temp = '<li><a href="#" onClick=\'jumpTo("' + currPath[i].id + '")\'>' + currPath[i].name + '</a></li> | ' + temp;
-//              } else {
-//                 temp = '<li><a>' + currPath[i].name + '</a></li>' + temp;
-//              }
-//         }
-
-//         $("#nav").append('<ul>' + temp + '</ul>');
-//     }
-
     if (currPath.length > 1) {
         for (var i = 0; i < currPath.length; i++) {
-//              if (i > 0) {
-//                 temp = '<li><a href="#" onClick=\'jumpTo("' + currPath[i].id + '")\'>' + currPath[i].name + '</a></li> | ' + temp;
-//              } else {
+             if (i > 0) {
+                temp = '<li><a onClick=\'jumpTo("' + currPath[i].id + '")\'>' + currPath[i].name + '</a></li>' + temp;
+             } else {
                 temp = '<li><a>' + currPath[i].name + '</a></li>' + temp;
-//              }
+             }
         }
 
         $("#nav").append('<ol class="breadcrumb">' + temp + '</ol>');
@@ -149,6 +137,12 @@ function setInfo(d) {
             }
         }
         $("#pilots").html(temp);
+    }
+
+    if (!d.children) {
+        $("#assBtn").attr('class', 'btn btn-default');
+    } else {
+        $("#assBtn").attr('class', 'btn btn-default hidden');
     }
 }
 

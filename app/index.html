@@ -27,9 +27,10 @@
     <body>
 
         <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation"><a href="#org_mgmt" aria-controls="org_mgmt" role="tab" data-toggle="tab">Org Structure</a></li>
-            <li role="presentation"><a href="#mem_mgmt" aria-controls="mem_mgmt" role="tab" data-toggle="tab">Member Management</a></li>
-            <li role="presentation"><a href="#miss_mgmt" aria-controls="miss_mgmt" role="tab" data-toggle="tab">Mission Management</a></li>
+            <li role="presentation"><a href="#org_mgmt" aria-controls="org_mgmt" role="tab" data-toggle="tab">Overview</a></li>
+            <li role="presentation"><a href="#mem_mgmt" aria-controls="mem_mgmt" role="tab" data-toggle="tab">Member Assignment</a></li>
+            <li role="presentation"><a href="#train_mgmt" aria-controls="train_mgmt" role="tab" data-toggle="tab">Training</a></li>
+            <li role="presentation"><a href="#miss_mgmt" aria-controls="miss_mgmt" role="tab" data-toggle="tab">Missions</a></li>
         </ul>
 
         <div class="tab-content">
@@ -128,7 +129,7 @@
                                     <div class="btn-group text-center" role="group">
                                         <button onclick="addUnit()" type="button" class="btn btn-default">Add</button>
                                         <button onclick="modifyUnit()" type="button" class="btn btn-default">Modify</button>
-                                        <button onclick="assignPilots()" type="button" class="btn btn-default">Assign</button>
+                                        <button id="assBtn" onclick="assignPilots()" type="button" class="btn btn-default">Assign</button>
                                         <button type="button" class="btn btn-default">Delete</button>
                                     </div>
                                 </div>
@@ -188,7 +189,11 @@
                     </div>
                 </div>
             </div>
+            <div role="tabpanel" class="tab-pane" id="train_mgmt">
+                TODO
+            </div>
             <div role="tabpanel" class="tab-pane" id="miss_mgmt">
+                TODO
             </div>
         </div>
 
