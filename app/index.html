@@ -99,11 +99,11 @@
                             </div>
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                <strong>Description:</strong>
+                                    <strong>Description:</strong>
                                     <div class="" id="desc"></div>
                                 </li>
                                 <li class="list-group-item">
-                                    <label class="control-label">Leader:</label>
+                                    <strong>Leader:</strong>
 
                                     <table class="table">
                                         <tbody id="leader">
@@ -111,8 +111,7 @@
                                     </table>
                                 </li>
                                 <li class="list-group-item">
-                                    Pilots:
-
+                                    <strong>Pilots:</strong>
                                     <table class="table">
                                         <tbody id="pilots">
                                         </tbody>
@@ -145,34 +144,41 @@
 
             </div>
             <div role="tabpanel" class="tab-pane" id="mem_mgmt">
-                <div id="assign" class="assign" style="height:33%;">
-                    <div id="divisionSel">
+                <div id="assign" class="assign">
+                    </br>
+                    <div class="row">
+                        <div id="divisionSel">
+                        </div>
+                        <div id="unitSel">
+                        </div>
                     </div>
-                    <div id="unitSel">
+                    </br>
+
+                    <div class="row">
+                        <div id="dropList">
+                        </div>
                     </div>
 
-                    <div id="dropList">
+                    <div class="col-md-12">
+                        <div class="memberlist">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th align="left">#</th>
+                                        <th align="left">Name</th>
+                                        <th align="left">Callsign</th>
+                                        <th align="left">Rank</th>
+                                        <th align="left">Role</th>
+                                        <th align="left">Ships</th>
+                                        <th align="left">Timzone</th>
+                                        <th align="left">Note</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="memberlistbody">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="memberlist" style="height:66%;">
-
-                    <table style="width:100%;">
-                        <thead>
-                            <tr>
-                                <th align="left">#</th>
-                                <th align="left">Name</th>
-                                <th align="left">Callsign</th>
-                                <th align="left">Rank</th>
-                                <th align="left">Role</th>
-                                <th align="left">Ships</th>
-                                <th align="left">Timzone</th>
-                                <th align="left">Note</th>
-                            </tr>
-                        </thead>
-                        <tbody id="memberlistbody">
-                        </tbody>
-                    </table>
-
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="miss_mgmt">
