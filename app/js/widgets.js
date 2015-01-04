@@ -1,6 +1,6 @@
 
 function addUnit() {
-    $(".modal-title").html("Add Unit");
+    $(".modal-title").html('Add Unit to "' + currPath[0].name + '"');
 
     $("#i_name").val('');
     $("#i_desc").val('');
@@ -118,7 +118,7 @@ function setInfo(d) {
 
     
     $("#name").html((d.type ? d.name  + " [" + d.type + "]" : d.name) + " [" + d.id + "]");
-    $("#desc").html(d.desc ? d.desc : "");
+    $("#desc").html(d.desc ? d.desc : "&nbsp;");
     $("#rank").empty();
 
     $("#leader").empty();
@@ -134,8 +134,12 @@ function setInfo(d) {
         $("#leader").html(temp);
     }
 
+
     $("#pilots").empty();
     var res = getAssignMembers(d.id);
+
+    $(".pilotinfo").empty();
+    $(".pilotinfo").append('' + res.length);
     if (res && res.length) {
         temp = "";
         for (var i = 0; i < res.length; i++) { 
@@ -197,7 +201,7 @@ function setDrops(drop) {
         temp += '<div class="col-md-' + t + '">' + 
                    '<div class="panel">' +
                       '<div class="panel-body drop-panel">' +
-                         '<div id="' + c.id + '" class="droppilot"><div class="panel-title text-center">' + c.name + '</div><table class="table"><thead><tr><th>Name</th><th>M</th></tr></thead><tbody>';
+                         '<div id="' + c.id + '" class="droppilot"><div class="panel-title text-center">' + c.name + '</div><div class="pilotlist"><table class="table"><thead><tr><th>Name</th><th>M</th></tr></thead><tbody>';
         var pilots = getAssignMembers(c.id);
         pilots.forEach(function(p) {
             var mem = getMember(p);
@@ -205,7 +209,7 @@ function setDrops(drop) {
                 temp += '<tr><td><div handle="' + mem.handle + '" class="ui-draggable member">' + mem.name + '</div></td><td></td></tr>';
             }
         });
-        temp += '</tbody></table>' + '</div></div></div></div>';
+        temp += '</tbody></table>' + '</div></div></div></div></div>';
     });
     $("#dropList").append(temp).find('.member').draggable(createDraggable());
 
