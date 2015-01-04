@@ -161,43 +161,53 @@ function initSel(tag, obj) {
     $(tag).empty();
 
     var temp = "";
+    var active = "";
     if (obj.children) {
         obj.children.forEach(function(c) {
-            temp += '<option value="' + c.id + '">' + c.name + '</option>';
+            if (active === "") {
+                active = c.name;
+            }
+            temp += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">' + c.name + '</a></li>';
         });
     }
     
-    $(tag).append('<select>' + temp  + '</select>');
+    $(tag).append('<div class="col-md-3"><div class="input-group">' +
+                '<input type="text" class="form-control" id="dropname' + obj.id + '" value="' + active + '" readonly>' +
+                '<div class="input-group-btn">' + 
+                    '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span class="caret"></span></button>' +
+                    '<ul class="dropdown-menu dropdown-menu-right" role="menu" id="dropdownData' + obj.id + '">' +
+                    temp +
+                    '</ul>' +
+                '</div>' + 
+            '</div></div>');
+
+    $("#dropdownData" + obj.id).on('click', 'li a', function(){
+        $("#dropname" + obj.id).val($(this).text());
+    });
 }
 
 function setDrops(drop) {
     $("#dropList").empty();
 
+    var c = parseInt(12 / drop.children.length);
+    var t = '' + c;
+    
     var temp = "";
     drop.children.forEach(function(c) {
-        temp += '<div id="' + c.id + '" class="droppilot">' + c.name + '<table><thead><tr><th>pilot</th><th>M</th></tr></thead><tbody>';
+        temp += '<div class="col-md-' + t + '">' + 
+                   '<div class="panel">' +
+                      '<div class="panel-body drop-panel">' +
+                         '<div id="' + c.id + '" class="droppilot"><div class="panel-title text-center">' + c.name + '</div><table class="table"><thead><tr><th>Name</th><th>M</th></tr></thead><tbody>';
         var pilots = getAssignMembers(c.id);
         pilots.forEach(function(p) {
             var mem = getMember(p);
             if (mem) {
-                temp += '<tr class="myhover"><td><div handle="' + mem.handle + '" class="ui-draggable member">' + mem.name + '</div></td><td></td></tr>';
+                temp += '<tr><td><div handle="' + mem.handle + '" class="ui-draggable member">' + mem.name + '</div></td><td></td></tr>';
             }
         });
-        temp += '</tbody></table></div>';
+        temp += '</tbody></table>' + '</div></div></div></div>';
     });
-    $("#dropList").append(temp).find('.member').draggable({
-//         containment: '.droppilot',
-//         stack: '.member div',
-        cursor: 'move',
-        helper: 'clone',
-//         revert: true,
-        cursorAt: { left: 0, top: 0 }, 
-        revertDuration: 100,
-        revert: function(is_valid_drop){
-//             console.log("is_valid_drop = " + is_valid_drop);
-            return true;
-        }
-    });
+    $("#dropList").append(temp).find('.member').draggable(createDraggable());
 
 
 
@@ -232,21 +242,27 @@ function handleDropEvent( event, ui ) {
                                 '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
                                 '<td>' + m.callsign + '</td>' +
                                 '</tr>')
-                            .find(".member").draggable({
-//         containment: '.droppilot',
-//         stack: '.member div',
-        cursor: 'move',
-        helper: 'clone',
-//         revert: true,
-        cursorAt: { left: 0, top: 0 }, 
-        revertDuration: 100,
-        revert: function(is_valid_drop){
-//             console.log("is_valid_drop = " + is_valid_drop);
-            return true;
-        }
-    });
+                            .find(".member").draggable(createDraggable());
     setInfo(currPath[0]);
+}
 
+function createDraggable() {
+    return {
+    //         containment: '.droppilot',
+    //         containment: 'body',
+    //         stack: '.assign',
+    //         stack: '.member div',
+            cursor: 'move',
+            helper: 'clone',
+            zIndex: 10,
+    //         revert: true,
+            cursorAt: { left: 0, top: 0 }, 
+            revertDuration: 100,
+            revert: function(is_valid_drop){
+    //             console.log("is_valid_drop = " + is_valid_drop);
+                return true;
+            }
+        };
 }
 
 function initMemberList(mems) {
@@ -254,7 +270,7 @@ function initMemberList(mems) {
     for (var i = 0; i < mems.length; i++) {
         var m = mems[i];
         if (getAssignmentForMember(m.handle) === null) {
-            $("#memberlistbody").append('<tr class="myhover">' +
+            $("#memberlistbody").append('<tr>' +
                                         '<td>' + (i + 1) + '</td>' +
                                         '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
                                         '<td>' + m.callsign + '</td>' +
@@ -267,20 +283,7 @@ function initMemberList(mems) {
         }
     }
 
-    $("#memberlistbody").find(".member").draggable({
-//         containment: '.droppilot',
-//         stack: '.member div',
-        cursor: 'move',
-        helper: 'clone',
-//         revert: true,
-        cursorAt: { left: 0, top: 0 }, 
-        revertDuration: 100,
-        revert: function(is_valid_drop){
-            console.log("is_valid_drop = " + is_valid_drop);
-            return true;
-        }
-    });
-
+    $("#memberlistbody").find(".member").draggable(createDraggable());
 }
 
 
