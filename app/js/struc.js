@@ -137,10 +137,10 @@ function initOrgStruc() {
     orgstruc.addUnit(no4);
 
 
-    orgstruc.leader.push("no1");
-    orgstruc.leader.push("no3");
+    orgstruc.leader.push("mem001");
+    orgstruc.leader.push("mem003");
 
-    assignMap.push({handle: "no1", unit: 5});
-    assignMap.push({handle: "no2", unit: 5});
-    assignMap.push({handle: "no4", unit: 7});
+    assignMap.push({handle: "mem001", unit: 5});
+    assignMap.push({handle: "mem002", unit: 5});
+    assignMap.push({handle: "mem004", unit: 7});
 }
