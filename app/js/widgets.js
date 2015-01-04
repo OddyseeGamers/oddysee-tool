@@ -116,29 +116,37 @@ function setInfo(d) {
         $("#nav").append('<ol class="breadcrumb">' + temp + '</ol>');
     }
 
-// <ol class="breadcrumb">
-//   <li><a href="#">Home</a></li>
-//   <li><a href="#">Library</a></li>
-//   <li class="active">Data</li>
-// </ol>
-
-    $("#name").html(d.name);
+    
+    $("#name").html((d.type ? d.name  + " [" + d.type + "]" : d.name) + " [" + d.id + "]");
     $("#desc").html(d.desc ? d.desc : "");
-    $("#type").html(d.type);
     $("#rank").empty();
 
     $("#leader").empty();
     if (d.leader && d.leader.length) {
-        var m = getMember(d.leader[0]);
-        if (m) {
-            $("#rank").html(m.rank);
-            $("#leader").html(m.name);
+        temp = "";
+        for (var i = 0; i < d.leader.length; i++) { 
+            var m = getMember(d.leader[i]);
+            if (m) {
+                temp += '<tr' + (i ? '' : ' class="leader"') + '><td>' + m.name + '</td><td>' + m.rank + '</td></tr>';
+            }
         }
+
+        $("#leader").html(temp);
     }
 
-    $("#pilotcount").empty();
-    if (d.pilots && d.pilots.length) {
-        $("#pilotcount").html(d.pilots.length);
+    $("#pilots").empty();
+    var res = getAssignMembers(d.id);
+    console.debug("RMEM", assignMap);
+    console.debug("RES", res);
+    if (res && res.length) {
+        temp = "";
+        for (var i = 0; i < res.length; i++) { 
+            var m = getMember(res[i]);
+            if (m) {
+                temp += '<tr><td>' + m.name + '</td><td>' + m.rank + '</td></tr>';
+            }
+        }
+        $("#pilots").html(temp);
     }
 }
 
@@ -169,13 +177,51 @@ function setDrops(drop) {
 
     var temp = "";
     drop.children.forEach(function(c) {
-        temp += '<div id="' + c.id + '"class="droppilot">' + c.name + '<table><thead><tr><th>pilot</th><th>M</th></tr></thead><tbody>';
-        c.pilots.forEach(function(p) {
-            temp += '<tr class="myhover"><td>' + p + '</td><td></td></tr>';
+//         var div = 
+        temp += '<div id="' + c.id + '" class="droppilot">' + c.name + '<table><thead><tr><th>pilot</th><th>M</th></tr></thead><tbody>';
+        var pilots = getAssignMembers(c.id);
+        pilots.forEach(function(p) {
+            var mem = getMember(p);
+            if (mem) {
+                temp += '<tr class="myhover"><td><div handle="' + mem.handle + '" class="ui-draggable member">' + mem.name + '</div></td><td></td></tr>';
+            }
         });
         temp += '</tbody></table></div>';
     });
-    $("#dropList").append(temp);
+    $("#dropList").append(temp).find('.member').draggable({
+//         containment: '.droppilot',
+//         stack: '.member div',
+        cursor: 'move',
+        helper: 'clone',
+//         revert: true,
+        cursorAt: { left: 0, top: 0 }, 
+        revertDuration: 100,
+        revert: function(is_valid_drop){
+            console.log("is_valid_drop = " + is_valid_drop);
+            return true;
+        }
+    });
+
+
+
+/*
+    console.debug("find", $(this).find('.droppilot > table > tbody > tr > td > div.member'));
+//     $(this).find(".tbody").append('<tr>' +
+    $(this).find('.droppilot > table > tbody > tr > td > div.member').draggable({
+//         containment: '.droppilot',
+//         stack: '.member div',
+        cursor: 'move',
+        helper: 'clone',
+//         revert: true,
+        cursorAt: { left: 0, top: 0 }, 
+        revertDuration: 100,
+        revert: function(is_valid_drop){
+            console.log("is_valid_drop = " + is_valid_drop);
+            return true;
+        }
+    });
+
+*/
 
     $('.droppilot').droppable( {
 //           accept: '.member div',
@@ -187,14 +233,20 @@ function setDrops(drop) {
 
 function handleDropEvent( event, ui ) {
     var draggable = ui.draggable;
-    assignMap.push({handle: draggable.attr('handle'), fleet: $(this).attr('id')});
+
+//     var isAss = isAssined();
+//     assignMap.push({handle: draggable.attr('handle'), unit: parseInt($(this).attr('id'))});
+    removeMember(draggable.attr('handle'), parseInt(ui.draggable.parent().parent().parent().parent().parent().attr('id')));
+    assignMember(draggable.attr('handle'), parseInt($(this).attr('id')));
+    // TODO: find reverse selector
+
+//     console.debug("ID REMOVE",  ui.draggable.parent().parent().parent().parent().parent().attr('id'));
 
     ui.draggable.draggable( 'option', 'revert', false );
     ui.draggable.draggable( 'option', 'cursor', 'pointer' );
     ui.draggable.draggable( 'disable');
     ui.draggable.parent().parent().hide();
     var m = getMember(draggable.attr('handle'));
-    console.debug("add>>>", $(this).find("tbody"));
     $(this).find("tbody").append('<tr>' +
                                 '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
                                 '<td>' + m.callsign + '</td>' +
@@ -212,9 +264,8 @@ function handleDropEvent( event, ui ) {
             return true;
         }
     });
+    setInfo(currPath[0]);
 
-//     console.debug( 'Member', draggable.attr('handle'), 'was dropped onto', $(this).attr('id'), 'map', assignMap);
-//     initMemberList2(mems);
 }
 
 function initMemberList(mems) {
