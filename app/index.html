@@ -91,44 +91,44 @@
                     <div id="nav">
                     </div>
                     <div class="info">
-                        <div>
-                            <div class="infoitem">name:</div>
-                            <div class="infoentry" id="name"></div>
-                            </br>
-
-                            <div class="infoitem">description:</div>
-                            <div class="infoentry" id="desc"></div>
-                            </br>
-
-                            <div class="infoitem">type:</div>
-                            <div class="infoentry" id="type"></div>
-                            </br>
-
-                            <div class="infoitem">leader:</div>
-                            <div class="infoentry" id="rank"></div>
-                            </br>
-                            <div class="infoitem"></div>
-                            <div class="infoentry" id="leader"></div>
-
-                            </br>
-                            </br>
-
-                            <div id="edit">
-                                <div class="btn-group" role="group" >
-                                    <button onclick="addUnit()" type="button" class="btn btn-default">Add</button>
-                                    <button onclick="modifyUnit()" type="button" class="btn btn-default">Modify</button>
-                                    <button type="button" class="btn btn-default">Delete</button>
-                                </div>
+                        <div class="panel panel-default infoPanel">
+                            <div class="panel-body">
+                                <strong>
+                                        <div class="unitName" id="name"></div>
+                                </strong>
                             </div>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                <strong>Description:</strong>
+                                    <div class="" id="desc"></div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="control-label">Leader:</label>
 
-                            </br>
-                            </br>
+                                    <table class="table">
+                                        <tbody id="leader">
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="list-group-item">
+                                    Pilots:
 
-
-                            <div class="infoitem">Pilots:</div>
-                            <div class="infoentry" id="pilotcount"></div>
-
+                                    <table class="table">
+                                        <tbody id="pilots">
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="list-group-item">
+                                <div id="edit">
+                                    <div class="btn-group" role="group" >
+                                        <button onclick="addUnit()" type="button" class="btn btn-default">Add</button>
+                                        <button onclick="modifyUnit()" type="button" class="btn btn-default">Modify</button>
+                                        <button type="button" class="btn btn-default">Delete</button>
+                                    </div>
+                                </div>
+                            </ul>
                         </div>
+     
                     </div>
 
                     <div id="vis" class="graph">
