@@ -114,10 +114,6 @@ text {
     background-color: #219ab3;
 }
 
-/* .activeItem>li>a:hover, .activeItem>li>a:focus { */
-/*     color: #fff; */
-/*     background-color: #219ab3; */
-/* } */
 
 a.activeItem {
     font-weight: 600;
@@ -199,7 +195,38 @@ input[readonly].form-control {
     border-color: #204d74;
 }
 
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    border: 0px;
+/*     border-top: 1px solid rgba(255,255,255,.1); */
+/*     border-top: 1px solid rgba(33,154,179,.1); */
+    border-top: 1px solid rgba(46,109,164,.1);
+}
 
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 4px;
+}
+
+.table>tbody>tr:nth-of-type(1)>td {
+    border: 0px;
+/*     border: 2px; */
+/*     border-top: 1px solid #2e6da4; */
+/*     border-top: 2px solid #219ab3; */
+}
+
+.table>thead>tr:nth-of-type(1)>th {
+    border: 2px;
+    border-bottom: 2px solid #2e6da4;
+/*     border-top: 2px solid #219ab3; */
+/*     border-top: 2px solid rgba(33,154,179,.1); */
+}
+
+/* .table>thead>tr:nth-of-type(1)>th { */
+/*     border: 1px; */
+/*     padding: 8px; */
+/*     line-height: 1.42857143; */
+/*     vertical-align: top; */
+/*     border-top: 2px solid #219ab3; */
+/* } */
 
 /************************************************************************************* */
 /* layout */
@@ -251,14 +278,14 @@ input[readonly].form-control {
 
 
 /************************************************************************************* */
-/* drag $ drop */
-
+/* drag & drop */
 
 .droppilot.hovered {
 /*   background: #fff; */
   background: rgba(255,255,255,.2);
   border-radius: 4px;
 }
+
 
 li.ui-draggable {
     cursor: move;
@@ -281,10 +308,6 @@ li.ui-draggable {
   border-radius: 4px;
 }
 
-/* li.ui-state-disabled { */
-/*     cursor: not-allowed; */
-/*     opacity: .5; */
-/* } */
 
 /************************************************************************************* */
 /* custom */
