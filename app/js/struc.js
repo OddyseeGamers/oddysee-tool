@@ -52,7 +52,58 @@ function getAssignmentForMember(handle) {
     return null;
 }
 
-function getAssignMembers(fleetid) {
+function findMember(handle, unitid) {
+    for (var i = 0; i < assignMap.length; i++) {
+        if (assignMap[i].handle === handle && assignMap[i].unit === unitid) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+function assignMember(handle, unitid) {
+    if (findMember(handle, unitid) < 0) {
+        assignMap.push({handle: handle, unit: unitid});
+    }
+}
+
+function removeMember(handle, unitid) {
+    var idx = findMember(handle, unitid);
+    var wtf = [];
+    for (var i = 0; i < assignMap.length; i++) {
+        if (i !== idx) {
+            wtf.push(assignMap[i]);
+        }
+    }
+
+    assignMap = wtf;
+    // TODO: WTF
+//     var r = assignMap.slice(0, 1);
+}
+
+
+function getAssignMembers(id) {
+    var res = [];
+    var unit = cache[id];
+    
+    if (unit) {
+        assignMap.forEach(function(mem) {
+            if (id === mem.unit) {
+                res.push(mem.handle);
+            }
+        });
+    
+        if (unit.children) {
+            unit.children.forEach(function(child) {
+                var temp = getAssignMembers(child.id);
+                res = res.concat(temp);
+            });
+        }
+        
+    }
+
+    return res;
 }
 
 var orgstruc = new Unit("ORGNAME", "org", "org desc...");
@@ -80,11 +131,16 @@ function initOrgStruc() {
     var no3 = new Unit("no3", "division", "", "#0000ff");
     var no4 = new Unit("no4", "division", "", "#ffff00");
 
-    orgstruc.leader.push("name1");
-    orgstruc.leader.push("name2");
-
     orgstruc.addUnit(no1);
     orgstruc.addUnit(no2);
     orgstruc.addUnit(no3);
     orgstruc.addUnit(no4);
+
+
+    orgstruc.leader.push("no1");
+    orgstruc.leader.push("no3");
+
+    assignMap.push({handle: "no1", unit: 5});
+    assignMap.push({handle: "no2", unit: 5});
+    assignMap.push({handle: "no4", unit: 7});
 }
