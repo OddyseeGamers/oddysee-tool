@@ -136,8 +136,6 @@ function setInfo(d) {
 
     $("#pilots").empty();
     var res = getAssignMembers(d.id);
-    console.debug("RMEM", assignMap);
-    console.debug("RES", res);
     if (res && res.length) {
         temp = "";
         for (var i = 0; i < res.length; i++) { 
@@ -177,7 +175,6 @@ function setDrops(drop) {
 
     var temp = "";
     drop.children.forEach(function(c) {
-//         var div = 
         temp += '<div id="' + c.id + '" class="droppilot">' + c.name + '<table><thead><tr><th>pilot</th><th>M</th></tr></thead><tbody>';
         var pilots = getAssignMembers(c.id);
         pilots.forEach(function(p) {
@@ -197,31 +194,12 @@ function setDrops(drop) {
         cursorAt: { left: 0, top: 0 }, 
         revertDuration: 100,
         revert: function(is_valid_drop){
-            console.log("is_valid_drop = " + is_valid_drop);
+//             console.log("is_valid_drop = " + is_valid_drop);
             return true;
         }
     });
 
 
-
-/*
-    console.debug("find", $(this).find('.droppilot > table > tbody > tr > td > div.member'));
-//     $(this).find(".tbody").append('<tr>' +
-    $(this).find('.droppilot > table > tbody > tr > td > div.member').draggable({
-//         containment: '.droppilot',
-//         stack: '.member div',
-        cursor: 'move',
-        helper: 'clone',
-//         revert: true,
-        cursorAt: { left: 0, top: 0 }, 
-        revertDuration: 100,
-        revert: function(is_valid_drop){
-            console.log("is_valid_drop = " + is_valid_drop);
-            return true;
-        }
-    });
-
-*/
 
     $('.droppilot').droppable( {
 //           accept: '.member div',
@@ -234,13 +212,16 @@ function setDrops(drop) {
 function handleDropEvent( event, ui ) {
     var draggable = ui.draggable;
 
-//     var isAss = isAssined();
-//     assignMap.push({handle: draggable.attr('handle'), unit: parseInt($(this).attr('id'))});
-    removeMember(draggable.attr('handle'), parseInt(ui.draggable.parent().parent().parent().parent().parent().attr('id')));
-    assignMember(draggable.attr('handle'), parseInt($(this).attr('id')));
+    var unitid = parseInt($(this).attr('id'));
     // TODO: find reverse selector
+    var srcid = parseInt(ui.draggable.parent().parent().parent().parent().parent().attr('id'));
 
-//     console.debug("ID REMOVE",  ui.draggable.parent().parent().parent().parent().parent().attr('id'));
+    if (unitid === srcid) {
+        return;
+    }
+
+    assignMember(draggable.attr('handle'), unitid);
+    removeMember(draggable.attr('handle'), srcid);
 
     ui.draggable.draggable( 'option', 'revert', false );
     ui.draggable.draggable( 'option', 'cursor', 'pointer' );
@@ -260,7 +241,7 @@ function handleDropEvent( event, ui ) {
         cursorAt: { left: 0, top: 0 }, 
         revertDuration: 100,
         revert: function(is_valid_drop){
-            console.log("is_valid_drop = " + is_valid_drop);
+//             console.log("is_valid_drop = " + is_valid_drop);
             return true;
         }
     });
