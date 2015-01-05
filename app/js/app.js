@@ -13,5 +13,5 @@ $(document).ready(function () {
     initWidgets();
 
 //     initAssign();
-    initMemberList(mems);
+    initMemberList();
 });
