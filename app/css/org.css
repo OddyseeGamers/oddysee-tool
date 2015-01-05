@@ -311,20 +311,30 @@ input[readonly].form-control {
 /* drag & drop */
 
 .droppilot.hovered {
-/*   background: #fff; */
-  background: rgba(255,255,255,.2);
+  background: rgba(0,0,0,.2);
   border-radius: 4px;
 }
 
-
-li.ui-draggable {
-    cursor: move;
+.memberlist.hovered {
+  background: rgba(155,155,155,.2);
+  border-radius: 4px;
 }
+
+/* .ui-draggable.hovered { */
+/*   background: #fff; */
+/*   background: rgba(255,255,255,.2); */
+/*   border-radius: 4px; */
+/* } */
 
 .member {
     min-width: 100px;
     padding-left: 5px;
 }
+
+li.ui-draggable {
+    cursor: move;
+}
+
 
 .ui-draggable-dragging {
 /*   cursor: move; */

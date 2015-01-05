@@ -200,13 +200,7 @@ function setDrops(drop) {
     });
     $("#dropList").append(temp).find('.member').draggable(createDraggable());
 
-
-
-    $('.droppilot').droppable( {
-//           accept: '.member div',
-          hoverClass: 'hovered',
-          drop: handleDropEvent
-    } );
+    $('.droppilot').droppable(createDroppable());
 }
 
 
@@ -215,25 +209,50 @@ function handleDropEvent( event, ui ) {
 
     var unitid = parseInt($(this).attr('id'));
     // TODO: find reverse selector
-    var srcid = parseInt(ui.draggable.parent().parent().parent().parent().parent().attr('id'));
+    var srcid = parseInt(ui.draggable.parent().parent().parent().parent().parent().parent().attr('id'));
 
+    console.debug("again", unitid, srcid);
     if (unitid === srcid) {
         return;
     }
 
-    assignMember(draggable.attr('handle'), unitid);
-    removeMember(draggable.attr('handle'), srcid);
+    if (srcid) {
+        removeMember(draggable.attr('handle'), srcid);
+    }
+    
+    if (unitid) {
+        assignMember(draggable.attr('handle'), unitid);
+    } else {
+//         initMemberList();
+//         $(this).show();
+    }
 
-    ui.draggable.draggable( 'option', 'revert', false );
-    ui.draggable.draggable( 'option', 'cursor', 'pointer' );
-    ui.draggable.draggable( 'disable');
+
+//     ui.draggable.draggable( 'option', 'revert', false );
+//     ui.draggable.draggable( 'option', 'cursor', 'pointer' );
+//     ui.draggable.draggable( 'disable');
     ui.draggable.parent().parent().hide();
+
     var m = getMember(draggable.attr('handle'));
-    $(this).find("tbody").append('<tr>' +
-                                '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
-                                '<td>' + m.callsign + '</td>' +
-                                '</tr>')
-                            .find(".member").draggable(createDraggable());
+    console.debug("add here", m, $(this).prop("tagName"));
+    if (unitid) {
+        $(this).find("tbody").append('<tr>' +
+                                    '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
+                                    '<td>' + m.callsign + '</td>' +
+                                    '</tr>')
+                                .find(".member").draggable(createDraggable());
+    } else {
+        $(this).find("tbody").prepend('<tr>' +
+                        '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
+                        '<td>' + m.callsign + '</td>' +
+                        '<td>' + m.rank + '</td>' +
+                        '<td>' + m.role + '</td>' +
+                        '<td>' + m.ships.join() + '</td>' +
+                        '<td>' + m.timezone + '</td>' +
+                        '<td>' + m.notes + '</td>' +
+                        '</tr>')
+                                .find(".member").draggable(createDraggable());
+    }
     setInfo(currPath[0]);
 }
 
@@ -249,20 +268,28 @@ function createDraggable() {
     //         revert: true,
             cursorAt: { left: 0, top: 0 }, 
             revertDuration: 100,
-            revert: function(is_valid_drop){
+            revert: true
+//             revert: function(is_valid_drop){
     //             console.log("is_valid_drop = " + is_valid_drop);
-                return true;
-            }
+//                 return true;
+//             }
         };
 }
 
-function initMemberList(mems) {
+function createDroppable() {
+    return {
+//           accept: '.member div',
+          hoverClass: 'hovered',
+          drop: handleDropEvent
+    };
+}
+
+function initMemberList() {
     $("#memberlistbody").empty();
     for (var i = 0; i < mems.length; i++) {
         var m = mems[i];
         if (getAssignmentForMember(m.handle) === null) {
             $("#memberlistbody").append('<tr>' +
-                                        '<td>' + (i + 1) + '</td>' +
                                         '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
                                         '<td>' + m.callsign + '</td>' +
                                         '<td>' + m.rank + '</td>' +
@@ -275,6 +302,7 @@ function initMemberList(mems) {
     }
 
     $("#memberlistbody").find(".member").draggable(createDraggable());
+    $('.memberlist').droppable(createDroppable());
 }
 
 

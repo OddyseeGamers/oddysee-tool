@@ -70,16 +70,50 @@ function assignMember(handle, unitid) {
 
 function removeMember(handle, unitid) {
     var idx = findMember(handle, unitid);
+
+    var idxs = [];
+    if (idx < 0) {
+        idxs = getAssignMemberObjects(unitid);
+    } else {
+        idxs.push(idx);
+    }
+
     var wtf = [];
     for (var i = 0; i < assignMap.length; i++) {
-        if (i !== idx) {
-            wtf.push(assignMap[i]);
+        for (var j = 0; j < idxs.length; j++) {
+            if (i !== idxs[j]) {
+                wtf.push(assignMap[i]);
+            }
         }
     }
 
     assignMap = wtf;
     // TODO: WTF
 //     var r = assignMap.slice(0, 1);
+}
+
+function getAssignMemberObjects(id) {
+    var res = [];
+    var unit = cache[id];
+    
+    if (unit) {
+        for (var i = 0; i < assignMap.length; i++) {
+            mem = assignMap[i];
+            if (id === mem.unit) {
+                res.push(i);
+            }
+        }
+    
+        if (unit.children) {
+            unit.children.forEach(function(child) {
+                var temp = getAssignMemberObjects(child.id);
+                res = res.concat(temp);
+            });
+        }
+        
+    }
+
+    return res;
 }
 
 
@@ -218,8 +252,14 @@ function initOrgStruc() {
     orgstruc.addUnit(rec);
     orgstruc.addUnit(prcom);
 
-    assignMap.push({handle: "mem001", fleet: 26});
-    assignMap.push({handle: "mem001", unit: 5});
+//     assignMap.push({handle: "mem001", unit: 5});
     assignMap.push({handle: "mem002", unit: 5});
-    assignMap.push({handle: "mem004", unit: 7});
+//     assignMap.push({handle: "mem004", unit: 7});
+
+//     assignMap.push({handle: "mem005", unit: 26});
+//     assignMap.push({handle: "mem006", unit: 26});
+//     assignMap.push({handle: "mem007", unit: 34});
+//     assignMap.push({handle: "mem008", unit: 34});
+//     assignMap.push({handle: "mem009", unit: 34});
+//     assignMap.push({handle: "mem010", unit: 40});
 }
