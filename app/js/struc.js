@@ -185,17 +185,16 @@ function initOrgStruc() {
     lid.addUnit(pf);
     lid.addUnit(tech);
 
-
-    var rec = new Unit("REC", "division", "", "#ffd700");
-
-
     var prcom = new Unit("PRCOM", "division");
-    var p1 = new Unit("Contracts", "branch", "", "#00ffff");
-    var p2 = new Unit("Racing", "branch", "", "#00ffff");
-    var p3 = new Unit("Public Relations", "branch", "", "#00ffff");
+    var p1 = new Unit("Contracts", "branch", "", "#005500");
+    var p2 = new Unit("Racing", "branch", "", "#005500");
+    var p3 = new Unit("Public Relations", "branch", "", "#005500");
+    var rec = new Unit("Recruiting", "branch", "", "#005500");
+
     prcom.addUnit(p1);
     prcom.addUnit(p2);
     prcom.addUnit(p3);
+    prcom.addUnit(rec);
 
     var stratcom = new Unit("STRATCOM", "division", "Strategy Command");
 
@@ -249,17 +248,16 @@ function initOrgStruc() {
 
     orgstruc.addUnit(stratcom);
     orgstruc.addUnit(lid);
-    orgstruc.addUnit(rec);
     orgstruc.addUnit(prcom);
 
-//     assignMap.push({handle: "mem001", unit: 5});
+    assignMap.push({handle: "mem001", unit: 5});
     assignMap.push({handle: "mem002", unit: 5});
-//     assignMap.push({handle: "mem004", unit: 7});
+    assignMap.push({handle: "mem004", unit: 7});
 
-//     assignMap.push({handle: "mem005", unit: 26});
-//     assignMap.push({handle: "mem006", unit: 26});
-//     assignMap.push({handle: "mem007", unit: 34});
-//     assignMap.push({handle: "mem008", unit: 34});
-//     assignMap.push({handle: "mem009", unit: 34});
-//     assignMap.push({handle: "mem010", unit: 40});
+    assignMap.push({handle: "mem005", unit: 26});
+    assignMap.push({handle: "mem006", unit: 26});
+    assignMap.push({handle: "mem007", unit: 34});
+    assignMap.push({handle: "mem008", unit: 34});
+    assignMap.push({handle: "mem009", unit: 34});
+    assignMap.push({handle: "mem010", unit: 40});
 }
