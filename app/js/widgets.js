@@ -299,10 +299,10 @@ function initMemberList() {
 
 
 function initWidgets() {
-    $('a[href$="#org_mgmt"').on('click', function() {
+    $('a[href$="#org_mgmt"]').on('click', function() {
         setInfo(currPath[0]);
     });
-    $('a[href$="#mem_mgmt"').on('click', function() {
+    $('a[href$="#mem_mgmt"]').on('click', function() {
         initDropList();
     });
 }
