@@ -134,8 +134,6 @@ function setInfo(d) {
     } else {
         $("#assBtn").attr('class', 'btn btn-default hidden');
     }
-
-    initDropList();
 }
 
 
@@ -211,7 +209,6 @@ function handleDropEvent( event, ui ) {
     // TODO: find reverse selector
     var srcid = parseInt(ui.draggable.parent().parent().parent().parent().parent().parent().attr('id'));
 
-    console.debug("again", unitid, srcid);
     if (unitid === srcid) {
         return;
     }
@@ -228,13 +225,9 @@ function handleDropEvent( event, ui ) {
     }
 
 
-//     ui.draggable.draggable( 'option', 'revert', false );
-//     ui.draggable.draggable( 'option', 'cursor', 'pointer' );
-//     ui.draggable.draggable( 'disable');
     ui.draggable.parent().parent().hide();
 
     var m = getMember(draggable.attr('handle'));
-    console.debug("add here", m, $(this).prop("tagName"));
     if (unitid) {
         $(this).find("tbody").append('<tr>' +
                                     '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
@@ -253,7 +246,6 @@ function handleDropEvent( event, ui ) {
                         '</tr>')
                                 .find(".member").draggable(createDraggable());
     }
-    setInfo(currPath[0]);
 }
 
 function createDraggable() {
@@ -307,4 +299,10 @@ function initMemberList() {
 
 
 function initWidgets() {
+    $('a[href$="#org_mgmt"').on('click', function() {
+        setInfo(currPath[0]);
+    });
+    $('a[href$="#mem_mgmt"').on('click', function() {
+        initDropList();
+    });
 }
