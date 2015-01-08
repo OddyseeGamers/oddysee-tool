@@ -223,12 +223,15 @@ input[readonly].form-control {
 /*     border-color: #337ab7; */
 }
 
-/* .last { */
+.last {
+    color: #219ab3 !important;
 /*   background: rgba(255,255,255,.2); */
-/* } */
+}
+
 
 .last:hover, .last:focus, .last.active {
     outline: 0;
+    background-color: #232A2E !important;
 /*     background-color: rgba(255,255,255,1); */
 /*     background-color: #161A1C; */
 /*     background-color: transparent !important; */
@@ -391,3 +394,12 @@ li.ui-draggable {
     color: #31708f;
 }
 
+.caret-right {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    border-left: 4px solid;
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+}
