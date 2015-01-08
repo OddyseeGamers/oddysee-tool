@@ -186,27 +186,34 @@ input[readonly].form-control {
     transition: background .3s ease-in-out;
 /*     margin-right: 2px; */
 /*     line-height: 1.42857143; */
-/*     border: 1px solid transparent; */
+    border: 0px solid transparent;
     border-radius: 0px 0px 0 0;
+/*     background-color: rgba(255,255,255,.3); */
+    background-color: #232A2E;
+}
+.nav-pills>li+li {
+    margin-left: 0px;
 }
 
 .nav-pills li a:hover, .nav-pills li a:focus, .nav-pills li a.active {
-    outline: 0;
+/*     outline: 0; */
+/*     background-color: #2C3539; */
     background-color: rgba(255,255,255,.3);
     border: 0px;
 }
 
 
-.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-    color: #fff;
-    background-color: rgba(255,255,255,.3);
+/* .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus { */
+/*     color: #fff; */
+/*     background-color: rgba(255,255,255,.3); */
 /*     border: 1px solid transparent; */
-    border: 0px;
-}
+/*     border: 0px; */
+/* } */
 
 /* .nav-pills { */
 /*     border-bottom: 1px solid rgba(255,255,255,.3); */
 /* } */
+
 
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
 /*     background-color: #e00; */
@@ -216,9 +223,16 @@ input[readonly].form-control {
 /*     border-color: #337ab7; */
 }
 
+/* .last { */
+/*   background: rgba(255,255,255,.2); */
+/* } */
+
 .last:hover, .last:focus, .last.active {
     outline: 0;
-    background-color: transparent !important;
+/*     background-color: rgba(255,255,255,1); */
+/*     background-color: #161A1C; */
+/*     background-color: transparent !important; */
+/*   background: rgba(255,255,255,.2); */
 /*     border: 0px; */
 }
 
@@ -287,7 +301,7 @@ input[readonly].form-control {
 
 .infolist {
     overflow: auto;
-    height: 192px;
+    height: 218px;
 }
 
 .graph {
