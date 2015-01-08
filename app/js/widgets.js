@@ -83,6 +83,11 @@ function appendUnit(add) {
     return false;
 }
 
+function openAssin() {
+    initDropList();
+    $('#myTab a[href="#mem_mgmt"]').tab('show');
+}
+
 /****************************************************************************/
 /* widgets */
 
@@ -129,10 +134,9 @@ function setInfo(d) {
         $("#pilots").html(temp);
     }
 
-    if (!d.children) {
-        $("#assBtn").attr('class', 'btn btn-default');
-    } else {
-        $("#assBtn").attr('class', 'btn btn-default hidden');
+    var currTab = $('#myTab > li.active > a').attr('href');
+    if (currTab === '#mem_mgmt') {
+        initDropList();
     }
 }
 
@@ -157,12 +161,12 @@ function initSel(tag, obj) {
         });
     }
 
-
+    var last = currPath[0].id === obj.id;
 
     if (temp !== "") {
         $(tag).append('<li role="presentation" class="dropdown">' +
-                      '<a id="drop' + obj.id + '" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">' +
-                        obj.name + '&nbsp;&nbsp;&nbsp;<span class="caret"></span>' +
+                      '<a id="drop' + obj.id + '" href="#" class="dropdown-toggle' + (last ? ' last' : '') + '" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">' +
+                        obj.name + '&nbsp;&nbsp;&nbsp;<span class="caret-right"></span>' +
                     '</a>' +
                     '<ul class="dropdown-menu" role="menu"  aria-labelledby="drop' + obj.id + '">' +
                       temp +
@@ -224,10 +228,9 @@ function handleDropEvent( event, ui ) {
 //         $(this).show();
     }
 
-
     ui.draggable.parent().parent().hide();
-
     var m = getMember(draggable.attr('handle'));
+
     if (unitid) {
         $(this).find("tbody").append('<tr>' +
                                     '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
@@ -235,6 +238,7 @@ function handleDropEvent( event, ui ) {
                                     '</tr>')
                                 .find(".member").draggable(createDraggable());
     } else {
+
         $(this).find("tbody").prepend('<tr>' +
                         '<td><div handle="' + m.handle + '" class="ui-draggable member">' + m.name + '</div></td>' +
                         '<td>' + m.callsign + '</td>' +
@@ -246,6 +250,7 @@ function handleDropEvent( event, ui ) {
                         '</tr>')
                                 .find(".member").draggable(createDraggable());
     }
+//     initDropList();
 }
 
 function createDraggable() {
