@@ -73,7 +73,7 @@ function removeMember(handle, unitid) {
 
     var idxs = [];
     if (idx < 0) {
-        idxs = getAssignMemberObjects(unitid);
+        idxs = getAssignMemberObjects(handle, unitid);
     } else {
         idxs.push(idx);
     }
@@ -86,27 +86,26 @@ function removeMember(handle, unitid) {
             }
         }
     }
-
     assignMap = wtf;
     // TODO: WTF
 //     var r = assignMap.slice(0, 1);
 }
 
-function getAssignMemberObjects(id) {
+function getAssignMemberObjects(handle, id) {
     var res = [];
     var unit = cache[id];
     
     if (unit) {
         for (var i = 0; i < assignMap.length; i++) {
-            mem = assignMap[i];
-            if (id === mem.unit) {
+            var mem = assignMap[i];
+            if (handle === mem.handle && id === mem.unit) {
                 res.push(i);
             }
         }
     
         if (unit.children) {
             unit.children.forEach(function(child) {
-                var temp = getAssignMemberObjects(child.id);
+                var temp = getAssignMemberObjects(handle, child.id);
                 res = res.concat(temp);
             });
         }
